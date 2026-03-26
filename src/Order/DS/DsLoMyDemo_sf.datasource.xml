@@ -1,0 +1,18 @@
+<DataSource name="DsLoMyDemo" backendSystem="sf" businessObjectClass="LoMyDemo" external="false" editableEntity="Order__c" schemaVersion="2.0">
+  <!-- For more information about the supported properties and nodes see corresponding DataSource.md file under ~Workspace/contractSnippets/YourModuel Section/DS/DS_DataSource -->
+  <Attributes>
+    <Attribute name="pKey" table="Order__c" column="Id" />
+    <Attribute name="name" table="Order__c" column="Name" />
+    <Attribute name="phase" table="Order__c" column="Phase__c" />
+  </Attributes>
+  <Entities>
+  <Entity name="Order__c" alias="" idAttribute="pKey" />
+  </Entities>
+  <QueryCondition><![CDATA[
+      Order__c.Accountable__c = #currentUser#
+    ]]></QueryCondition>
+  <OrderCriteria />
+  <Parameters>
+    <Parameter name="currentUser" type="TEXT" />
+  </Parameters>
+</DataSource>
