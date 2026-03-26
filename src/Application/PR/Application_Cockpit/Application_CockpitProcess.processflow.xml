@@ -116,7 +116,9 @@
         <Declaration name="SfReplicationCallbacks" type="BoSfReplicationCallbacks" />
         <Declaration name="CurrentDate" type="String" />
         <!-- For Demo LO  -->
-         <Declaration name="DemoOrdersList" type="LoMyDemo" />       
+         <Declaration name="DemoOrdersList" type="LoMyDemo" />     
+         <Declaration name="DemoOrdersList_DataLoaded" type="DomBool" />  
+         <Declaration name="DemoOrdersList_InformationText" type="String" />
       </Declarations>
       <Parameters>
         <Input name="Mode" type="String" />
@@ -1492,7 +1494,18 @@
           <Input name="value" value="1" type="Literal" />
         </Parameters>
         <Return name="ProcessContext::DemoOrdersList_DataLoaded" />
-        <!-- <TransitionTo action="CardCustomersOverdue_LoadCustomers" /> -->
+        <TransitionTo action="DemoOrdersList_loadInformationText"/>
+      </Action>
+      <Action name="DemoOrdersList_loadInformationText" actionType="LOGIC" call="ProcessContext::DemoOrdersList.myGetInfoForDisplayCard">
+            <Parameters>
+                 <Input name="loItems" value="ProcessContext::DemoOrdersList"/>
+                 <Input name="type" value="Display" type="Literal" />
+            </Parameters>
+            <Return name="ProcessContext::DemoOrdersList_InformationText" />
+            <TransitionTo action="DemoOrdersList_reduceListItems"/>
+            </Action>
+      <Action name="DemoOrdersList_reduceListItems" actionType="LOGIC" call="ProcessContext::DemoOrdersList.myReduceNumberOfListItems">
+           <!-- <TransitionTo action="CardDisplay_setSubcomponentName" /> -->
       </Action>
     </Actions>
   </Body>

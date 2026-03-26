@@ -1500,6 +1500,7 @@
               </Parameters>
             </Binding>
             <Resource target="Title" type="Label" id="DemoOrdersListTitle" defaultLabel="Demo Orders" />
+            <Binding target="Information" type="Text" binding="ProcessContext::DemoOrdersList_InformationText" bindingMode="ONE_WAY" />
             <Binding target="IsReadyToLoad" type="Text" binding="ProcessContext::DemoOrdersList_DataLoaded" bindingMode="ONE_WAY" />
           </Bindings>
           <VisibilityRoles allRoles="true"/>
@@ -1517,38 +1518,9 @@
                     <Row layoutType="itemSecondaryCockpit" bindingId="OrderPhase" />
                   </Col>
                 </Default>
-                <!-- <Tablet>
-                  <Default>
-                    <Col width="1em" height="1.6em" layoutType="Image" bindingId="overdueImage" />
-                    <Col flex="1">
-                      <Row layoutType="itemIdentifierCockpit" bindingId="customerName" />
-                      <Row layoutType="itemSecondaryCockpit" bindingId="customerAddress" />
-                    </Col>
-                  </Default>
-                </Tablet> -->
-                <!-- <Phone>
-                  <Default>
-                    <Col width="1em" height="1.6em" layoutType="Image" bindingId="overdueImage" />
-                    <Col flex="1">
-                      <Row layoutType="itemIdentifierCockpit" bindingId="customerName" />
-                      <Row layoutType="itemSecondaryCockpit" bindingId="customerAddress" />
-                    </Col>
-                  </Default>
-                </Phone> -->
+             
               </ItemListLayout>
-              <!-- <ContextMenu>
-                <Bindings>
-                  <Binding target="DataSource" binding="ProcessContext::CardOverdueCustomers_ContextMenuList.Items[]" bindingMode="ONE_WAY" />
-                </Bindings>
-                <Items name="ContextMenuItems">
-                  <Bindings>
-                    <Binding target="Icon" type="Image" binding=".actionImg" />
-                    <Binding target="Text" type="Label" binding=".actionId" />
-                    <Binding type="Editable" target="Editable" binding=".actionEnabled" />
-                    <Binding type="Visible" target="Visible" binding=".actionVisible" />
-                  </Bindings>
-                </Items>
-              </ContextMenu> -->
+          
               <Bindings>
                 <Binding target="OrderName" type="Text" binding=".name" bindingMode="ONE_WAY" />
                 <Binding target="OrderPhase" type="Text" binding=".phase" bindingMode="ONE_WAY" />

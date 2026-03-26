@@ -11,7 +11,9 @@
   <QueryCondition><![CDATA[
       Order__c.Accountable__c = #currentUser#
     ]]></QueryCondition>
-  <OrderCriteria />
+  <OrderCriteria>
+            <OrderCriterion entity="Order__c" attribute="Name" direction="ASC" />
+       </OrderCriteria>
   <Parameters>
     <Parameter name="currentUser" type="TEXT" />
   </Parameters>
