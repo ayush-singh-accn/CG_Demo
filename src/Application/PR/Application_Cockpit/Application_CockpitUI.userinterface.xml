@@ -1528,6 +1528,82 @@
             </Items>
           </CockpitList>
         </CardContainer>
+<!-- Display Card START-->
+ <CardContainer name="CardDisplay">
+        <Bindings>
+            <Binding type="Visible" target="Visible" call="ProcessContext::CardController.isCardVisible">
+              <Parameters>
+                <Input name="cardName" type="Literal" value="CardDisplay" />
+              </Parameters>
+            </Binding>
+            <Binding type="Text" target="IsCollapsible" call="ProcessContext::CardController.isCardCollapsible" bindingMode="ONE_WAY">
+              <Parameters>
+                <Input name="cardName" type="Literal" value="CardDisplay" />
+              </Parameters>
+            </Binding>
+             <Resource target="Title" type="Label" id="DisplayCardTitle" defaultLabel="Displays" />
+             <Binding target="Information" type="Text" binding="ProcessContext::CardDisplay_InformationText" bindingMode="ONE_WAY" />
+             <Binding target="IsReadyToLoad" type="Text" binding="ProcessContext::CardDisplay_DataLoaded" bindingMode="ONE_WAY" />
+             <Binding target="DisplayedSubcomponentName" type="Text" binding="ProcessContext::CardDisplay_SubComponentName" bindingMode="ONE_WAY" />
+       </Bindings>
+        <VisibilityRoles allRoles="true" />
+        <Events>
+             <LoadContainerData event="CardDisplay_loadData" />
+        </Events>
+      <NoDataMessage name="CardNoDataMessageUiPlugin">
+             <Bindings>
+                  <Resource target="maintext" type="Label" id="MyNoCardNoDataMainText" defaultLabel="No data available " />
+                  <Resource target="subtext" type="Label" id="MyNoCardNoDataSubText" defaultLabel="relax and enjoy the sun!" />
+                  <Resource target="infoIcon" type="Image" id="Done" />
+             </Bindings>
+       </NoDataMessage>
+       <CockpitList name="Display" hasBorder="false" dataSource="ProcessContext::CardDisplay_DisplayList.Items[]">
+        <Items name="Items" itemPattern="CardDisplayItems">
+               <ItemListLayout>
+                     <Tablet>
+                           <Default>
+                              <Col width="1em" layoutType="Image" bindingId="Icon">
+                                   <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                                   <Row layoutType="itemSecondaryCockpit" bindingId="Row_Description" />
+                               </Col>
+                           </Default>
+                     </Tablet>
+                     <Phone>
+                           <Default>
+                                 <Col flex="1">
+                                    <Row layoutType="itemIdentifierCockpit" bindingId="Row_Name" />
+                                 </Col>
+                           </Default>
+                     </Phone>
+              </ItemListLayout>
+              
+              <Bindings>
+                    <Binding target="Row_Name" type="Text" binding=".name" bindingMode="ONE_WAY" />
+                    <Binding target="Row_Description" type="Text" binding=".description" bindingMode="ONE_WAY" />
+                    <Binding target="Icon" type="Image" binding=".iconId" bindingMode="ONE_WAY" />
+              </Bindings>
+        </Items>
+    <Events>
+       <ItemSelectedEvent event="CardDisplay_itemSelected">
+           <Params>
+               <Param name="pKey" value=".pKey" />
+           </Params>
+       </ItemSelectedEvent>
+   </Events>
+  </CockpitList>
+  <LinkBar>
+       <ImageButton name="ShowAllDisplaysButton">
+           <Bindings>
+              <Resource target="Text" type="Label" id="ShowAllDisplaysLink" defaultLabel="SHOW ALL DISPLAYS" bindingMode="ONE_WAY" />
+              <Resource target="Image" type="Image" id="Shelf" defaultImage="Shelf" />
+           </Bindings>
+           <Events>
+              <ButtonPressedEvent event="CardDisplay_showAllDisplays" />
+           </Events>
+       </ImageButton>
+    </LinkBar>
+   </CardContainer>
+<!-- Display Card END -->
         <!-- Sync Card -->
         <SyncCardContainer name="cardSync">
           <Bindings>

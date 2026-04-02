@@ -119,6 +119,11 @@
          <Declaration name="DemoOrdersList" type="LoMyDemo" />     
          <Declaration name="DemoOrdersList_DataLoaded" type="DomBool" />  
          <Declaration name="DemoOrdersList_InformationText" type="String" />
+         <!-- Card: Display -->
+         <Declaration name="CardDisplay_DataLoaded" type="DomBool" />
+         <Declaration name="CardDisplay_SubComponentName" type="String" />
+         <Declaration name="CardDisplay_DisplayList" type="LoMyDisplays"/>
+         <Declaration name="CardDisplay_InformationText" type="String" />
       </Declarations>
       <Parameters>
         <Input name="Mode" type="String" />
@@ -212,6 +217,9 @@
         </Parameters>
         <Return name="ProcessContext::DemoOrdersList" />
       </Action>
+      <Action name="LoadLoMyDisplays" actionType="LOAD" type="LoMyDisplays">
+          <Return name="ProcessContext::CardDisplay_DisplayList" />             
+      </Action>
     </EntryActions>
   </Entry>
   <Body>
@@ -300,6 +308,10 @@
           <!-- Logout -->
           <Event name="User_Logout" action="LogoutUser" />
           <Event name="DemoOrdersList_loadData" action="SetDemoOrdersList_DataLoaded" />
+          <!-- Card: Display-->
+          <Event name="CardDisplay_loadData" action="SetCardDisplay_DataLoaded" />
+          <Event name="CardDisplay_showAllDisplays" action="CardDisplay_loadDisplayDetails" />
+          <Event name="CardDisplay_itemSelected" action="CardDisplay_showSelectedDisplayDetails" />
         </Events>
       </Action>
       <Action actionType="LOGIC" name="LogoutUser" call="ApplicationContext::User.logout" />
@@ -1507,6 +1519,43 @@
       <Action name="DemoOrdersList_reduceListItems" actionType="LOGIC" call="ProcessContext::DemoOrdersList.myReduceNumberOfListItems">
            <!-- <TransitionTo action="CardDisplay_setSubcomponentName" /> -->
       </Action>
+
+      <!-- Card: Display START-->
+       <Action name="SetCardDisplay_DataLoaded" actionType="LOGIC" call="Utils.identity">
+                       <Parameters>
+                             <Input name="value" value="1" type="Literal" />
+                       </Parameters>
+                       <Return name="ProcessContext::CardDisplay_DataLoaded" />
+                       <TransitionTo action="CardDisplay_loadInformationText"/>
+        </Action>
+        <Action name="CardDisplay_loadInformationText" actionType="LOGIC" call="ProcessContext::CardDisplay_DisplayList.myGetInfoForDisplayCard">
+            <Parameters>
+                 <Input name="loItems" value="ProcessContext::CardDisplay_DisplayList"/>
+                 <Input name="type" value="Display" type="Literal" />
+            </Parameters>
+            <Return name="ProcessContext: :CardDisplay_InformationText" />
+            <TransitionTo action="CardDisplay_reduceListItems"/>
+        </Action>
+        <Action name="CardDisplay_reduceListItems" actionType="LOGIC" call="ProcessContext::CardDisplay_DisplayList.myReduceNumberOfListItems">
+           <!-- <TransitionTo action="CardDisplay_setSubcomponentName" /> -->
+        </Action>
+        <!-- <Action name="CardDisplay_setSubcomponentName" actionType="LOGIC" call="Utils.identity">
+          <Parameters>
+            <Input name="value" value="CardNoDataMessageUiPlugin" type="Literal" />
+          </Parameters>
+          <Return name="ProcessContext::CardDisplay_SubComponentName" />
+        </Action> -->
+        <Action name="CardDisplay_loadDisplayDetails" actionType="PROCESS" process="MyDisplay::MyDisplayDetailsProcess">
+        </Action>
+        <Action name="CardDisplay_showSelectedDisplayDetails" actionType="PROCESS" process="MyDisplay::MyDisplayDetailsProcess">
+           <Parameters>
+             <Input name="DisplayPKey" value="Event.pKey" />
+             <Input name="Mode" type="Literal" value="Cockpit" />
+           </Parameters>
+        </Action>
+        
+      <!-- Card: Display END-->
+
     </Actions>
   </Body>
 </Process>

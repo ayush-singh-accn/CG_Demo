@@ -104,6 +104,10 @@ switch (cardName){
   case "DemoOrdersList":
     visible = true;
     break;
+
+  case "CardDisplay":
+    visible = true;
+    break;
 }
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
