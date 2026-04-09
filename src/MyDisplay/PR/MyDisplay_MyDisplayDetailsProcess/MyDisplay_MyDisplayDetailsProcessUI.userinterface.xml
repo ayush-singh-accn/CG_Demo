@@ -4,6 +4,17 @@
          <Bindings>
             <Resource target="title" type="Label" id="DisplayDetailsTitle" defaultLabel="Display Details"/>
          </Bindings>
+         <MenuItems>
+  <MenuItem directlyVisible="true" itemId="AddDisplay">
+    <Bindings>
+      <Resource target="Text" type="Label" id="AddDisplay" defaultLabel="Add Display"/>
+      <Resource target="Icon" type="Image" id="Plus_PB" />
+    </Bindings>
+    <Events>
+      <ButtonPressedEvent event="addDisplay" />
+    </Events>
+  </MenuItem>
+</MenuItems>
       </PageHeader>
       <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
        <Area areaName="mainArea" areaPattern="SingleElementArea">

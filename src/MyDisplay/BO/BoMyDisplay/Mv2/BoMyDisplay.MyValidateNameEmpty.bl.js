@@ -26,33 +26,36 @@
  * -> returns: Type and variable name in which the return value is stored.
  *
  * ------- METHOD RELEVANT GENERATOR PARAMETERS BELOW - ADAPT WITH CAUTION -------
- * @function afterCreateAsync
+ * @function myValidateNameEmpty
  * @this BoMyDisplay
  * @kind businessobject
- * @async
  * @namespace CUSTOM
- * @param {Object} result
- * @param {Object} context
- * @returns promise
+ * @param {messageCollector} messageCollector
  */
-function afterCreateAsync(result, context){
+function myValidateNameEmpty(messageCollector){
     var me = this;
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
     //               Add your customizing javaScript code below.                                 //
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
+    var newError;
+    if(Utils.isEmptyString(me.getName())){
+    newError = {"level": "error",
+              "objectClass": "BoMyDisplay",
+              "messageID": "DisplayNameEmpty"};
+    messageCollector.add(newError);
+    }
     
-    var promise=when.resolve(result);
-    me.setObjectStatus(STATE.NEW | STATE.DIRTY);
-    me.setSalesOrg(ApplicationContext.get('user').getBoUserSales().getSalesOrg());
-    me.mySetEARights();
-
+    
+		
+   
+  
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
     //               Add your customizing javaScript code above.                                 //
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    return promise;
+    
 }

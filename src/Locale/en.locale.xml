@@ -449,6 +449,29 @@
       <Label id="AuthenticationRequiredMsg" text="Authentication is required, you may authenticate or skip to work offline for a limited period of time." translationStatus="7"/>
       <Label id="Authentication_Now" text="Authenticate" translationStatus="7"/>
       <Label id="Authentication_Skip" text="Skip" translationStatus="7"/>
+      <Label id="GotIt" text="Got It" translationStatus="1"/>
+      <Label id="SpeechToText_InputHint" text="Start Talking..." translationStatus="1"/>
+      <Label id="SpeechToText_CtaInitial" text="Start Listening" translationStatus="1"/>
+      <Label id="SpeechToText_CtaListening" text="Stop Listening" translationStatus="1"/>
+      <Label id="SpeechToText_FeatureUnavailable" text="Feature unavailable" translationStatus="1"/>
+      <Label id="SpeechToText_Error_Permission_Title" text="Enable microphone access?" translationStatus="1"/>
+      <Label id="SpeechToText_Error_Permission_Body" text="Turn on microphone access to use voice features." translationStatus="1"/>
+      <Label id="SpeechToText_Error_Permission_RightCta" text="Allow Access" translationStatus="1"/>
+      <Label id="SpeechToText_Error_SpeechRecognisionPermission_Title" text="Enable the speech recognition?" translationStatus="1"/>
+      <Label id="SpeechToText_Error_SpeechRecognisionPermission_Body" text="We need access to speech recognition to use voice features in the app." translationStatus="1"/>
+      <Label id="SpeechToText_Error_Session_Title" text="Speech session already active" translationStatus="1"/>
+      <Label id="SpeechToText_Error_Session_Body" text="Stop the current session and try again." translationStatus="1"/>
+      <Label id="SpeechToText_Error_Session_RightCta" text="Stop &amp; Retry" translationStatus="1"/>
+      <Label id="SpeechToText_Error_RecognitionNotSupported_Body" text="This device doesn't support speech recognition." translationStatus="1"/>
+      <Label id="SpeechToText_Error_OnDeviceNotSupported_Title" text="Internet connection required" translationStatus="1"/>
+      <Label id="SpeechToText_Error_OnDeviceNotSupported_Body" text="This device doesn't support offline speech recognition. Connect to the internet to use voice features." translationStatus="1"/>
+      <Label id="SpeechToText_Error_NoSupportedLanguages_Body" text="No supported languages are available on this device." translationStatus="1"/>
+      <Label id="SpeechToText_Error_LanguageUnavailable_Title" text="Download language pack" translationStatus="1"/>
+      <Label id="SpeechToText_Error_LanguageUnavailable_Body" text="Download the language pack from your device settings." translationStatus="1"/>
+      <Label id="SpeechToText_Error_Generic_Title" text="Transcription didn't work" translationStatus="1"/>
+      <Label id="SpeechToText_Error_Generic_Body" text="We couldn't complete the transcription. Try again." translationStatus="1"/>
+      <Label id="SpeechToText_BackPress_Title" text="Discard transcription?" translationStatus="1"/>
+      <Label id="SpeechToText_BackPress_Body" text="If you go back, your transcription won't be saved." translationStatus="1"/>
     </Framework>
     <Global>
       <!-- ####################################################################################################################################################################################### -->
@@ -761,7 +784,7 @@
       <Label id="CardVisitNotes_CreatedToday" text="Today" translationStatus="7"/>
       <Label id="CardVisitNotes_CreatedYesterday" text="Yesterday" translationStatus="7"/>
       <Label id="CardVisitNotes_DueTommorrow" text="Tomorrow" translationStatus="7"/>
-      <Label id="CardVisitNotes_You" text="You" translationStatus="7" />
+      <Label id="CardVisitNotes_You" text="You" translationStatus="7"/>
       <Label id="LoSalesFolderPromotion_NoDataAvailable" text="Nothing to view in this Sales Folder" translationStatus="7"/>
       <Label id="ReplicationSyncCard_Call__c_Singular" text="completed visit" translationStatus="7"/>
       <Label id="ReplicationSyncCard_Call__c_Plural" text="completed visits" translationStatus="7"/>
@@ -3112,6 +3135,11 @@
         <Label id="CardQuickAccess_NoDataMessageMainText" text="No quick links were defined for you yet" translationStatus="7"/>
         <Label id="CardTourMessage" text="Tour Message" translationStatus="7"/>
         <Label id="CardTourMessage_NoDataMessageSubText" text="No message available for this tour!" translationStatus="7"/>
+        <Label id="DemoOrdersListTitle" text="Demo Orders" translationStatus="1"/>
+        <Label id="MyNoCardNoDataMainText" text="No data available " translationStatus="1"/>
+        <Label id="MyNoCardNoDataSubText" text="relax and enjoy the sun!" translationStatus="1"/>
+        <Label id="ShowAllDisplaysLink" text="SHOW ALL DISPLAYS" translationStatus="1"/>
+        <Label id="DisplayCardTitle" text="Displays" translationStatus="1"/>
       </UserInterface>
       <UserInterface id="UserNotificationFlyoutUI">
         <Label id="NotificationsTitleId" text="Notification Details" translationStatus="7"/>
@@ -3744,6 +3772,26 @@
         <Label id="ReasonCodeLabel" text="Reason Type" translationStatus="7"/>
         <Label id="AdvSettingsGroupId" text="Quantity Difference (UoM)" translationStatus="7"/>
         <Label id="DifferenceLabel" text="Difference: " translationStatus="7"/>
+      </UserInterface>
+      <UserInterface id="MyDisplayMyCreateNewWizardUI">
+        <Label id="createNewDisplayId" text="Create" translationStatus="1"/>
+        <Label id="AddDisplayId" text="Add Display" translationStatus="1"/>
+        <Label id="DisplayName" text="Name" translationStatus="1"/>
+        <Label id="DisplayDescription" text="Description" translationStatus="1"/>
+        <Label id="DisplayDetailInfoGroup" text="Info" translationStatus="1"/>
+        <Label id="DisplayType" text="Display Type" translationStatus="1"/>
+        <Label id="CompetitorDisplayCB" text="Competitor Display" translationStatus="1"/>
+        <Label id="DisplayDetailTypeGroup" text="Type" translationStatus="1"/>
+      </UserInterface>
+      <UserInterface id="MyDisplayMyDisplayDetailsProcessUI">
+        <Label id="AddDisplay" text="Add Display" translationStatus="1"/>
+        <Label id="DisplayDetailsTitle" text="Display Details" translationStatus="1"/>
+        <Label id="DisplayName" text="Name" translationStatus="1"/>
+        <Label id="DisplayDescription" text="Description" translationStatus="1"/>
+        <Label id="DisplayDetailInfoGroup" text="Info" translationStatus="1"/>
+        <Label id="DisplayType" text="Display Type" translationStatus="1"/>
+        <Label id="CompetitorDisplayCB" text="Competitor Display" translationStatus="1"/>
+        <Label id="DisplayDetailTypeGroup" text="Type" translationStatus="1"/>
       </UserInterface>
     </UserInterfaceContracts>
     <ConfirmationMessages>
@@ -4390,6 +4438,9 @@
       </BusinessObject>
       <BusinessObject id="BoInventoryDocument">
         <Label id="ModificationReasonRequired" text="Select a reason type for the highlighted products." translationStatus="7"/>
+      </BusinessObject>
+      <BusinessObject id="BoMyDisplay">
+        <Label id="DisplayNameEmpty" text="Please enter a name." translationStatus="1"/>
       </BusinessObject>
     </ValidationMessages>
     <NavigationLabels>

@@ -26,33 +26,29 @@
  * -> returns: Type and variable name in which the return value is stored.
  *
  * ------- METHOD RELEVANT GENERATOR PARAMETERS BELOW - ADAPT WITH CAUTION -------
- * @function afterCreateAsync
+ * @function mySetEARights
  * @this BoMyDisplay
  * @kind businessobject
- * @async
  * @namespace CUSTOM
- * @param {Object} result
- * @param {Object} context
- * @returns promise
  */
-function afterCreateAsync(result, context){
+function mySetEARights(){
     var me = this;
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
     //               Add your customizing javaScript code below.                                 //
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
+    var acl = me.getACL(); acl.removeRight(AclObjectType.PROPERTY, "competitorDisplay", AclPermission.EDIT); 
     
-    var promise=when.resolve(result);
-    me.setObjectStatus(STATE.NEW | STATE.DIRTY);
-    me.setSalesOrg(ApplicationContext.get('user').getBoUserSales().getSalesOrg());
-    me.mySetEARights();
-
+    return acl;
+		
+   
+  
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
     //               Add your customizing javaScript code above.                                 //
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
-    return promise;
+    
 }

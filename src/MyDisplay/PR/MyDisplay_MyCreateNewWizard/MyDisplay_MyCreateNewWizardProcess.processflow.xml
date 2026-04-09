@@ -1,0 +1,33 @@
+<Process name="MyDisplay::MyCreateNewWizardProcess" defaultAction="ShowMyCreateNewWizardUI" schemaVersion="0.0.0.5">
+  <Entry>
+    <ProcessContext>
+      <Declarations>
+            <Declaration name="Name" type="DomText" />
+            <Declaration name="Description" type="DomLongDescription" />
+            <Declaration name="CompetitorDisplay" type="DomBool" />
+            <Declaration name="Type" type="DomDisplayType" />
+      </Declarations>
+      <Parameters/>
+    </ProcessContext>
+    <EntryActions/>
+  </Entry>
+  <Body>
+    <Actions>
+    <Action actionType="View" name="ShowMyCreateNewWizardUI">
+    <UIDescription>MyDisplay::MyCreateNewWizardUI</UIDescription>
+    <Events>
+          <Event name="createNewDisplay" action="End" />
+        </Events>
+    </Action>
+    <Action actionType="END" name="End">
+         <ReturnValues>
+      <Return name="Name" value="ProcessContext::Name" />
+<Return name="Description" value="ProcessContext::Description" />
+<Return name="CompetitorDisplay" value="ProcessContext::CompetitorDisplay" />
+<Return name="Type" value="ProcessContext::Type" />
+<Return name="buttonPressed" type="Literal" value="create" />
+    </ReturnValues>
+      </Action>
+    </Actions>
+  </Body>
+</Process>
