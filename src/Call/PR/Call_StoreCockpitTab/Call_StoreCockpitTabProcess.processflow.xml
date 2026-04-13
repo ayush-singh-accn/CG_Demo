@@ -220,6 +220,7 @@
           <!-- Card: User Notes-->
           <Event name="CardNotes_loadData" action="SetCardNotes_DataLoaded" />
           <Event name="CardNotes_itemSelected" action="CardNotes_LoadNote" />
+          <Event name="UserNotes_itemSelected" action="UserNotes_LoadNote" />
           <Event name="CardNotes_showAllNotes" action="CardNotes_ShowNotes" />
           <Event name="CardNotes_addNewNotePressed" action="CardNotes_LoadCurrentNote" />
           <!-- Card: Activity Performance-->
@@ -1176,6 +1177,25 @@
         <TransitionTo action="CardNotes_LoadNoteDetailWizard" />
       </Action>
       <Action actionType="PROCESS" name="CardNotes_LoadNoteDetailWizard" process="Call::VisitNotesWizardProcess">
+        <Parameters>
+          <Input name="NoteDetail" value="ProcessContext::NoteDetail" />
+          <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
+          <Input name="isReadOnly" value="ProcessContext::isNoteReadOnly" />
+        </Parameters>
+        <TransitionTo action="CardNotes_UpdateDecision" />
+        <ReturnValues>
+          <Return name="ProcessContext::NoteText" value="noteText" />
+          <Return name="ProcessContext::RefreshNoteList" value="isCurrentNote" />
+        </ReturnValues>
+      </Action>
+      <Action name="UserNotes_LoadNote" actionType="LOGIC" call="ProcessContext::CardNotes_List.getItemByPKey">
+        <Parameters>
+          <Input name="pKey" value="Event.pKey" />
+        </Parameters>
+        <Return name="ProcessContext::NoteDetail" />
+        <TransitionTo action="UserNotes_LoadNoteDetailWizard" />
+      </Action>
+      <Action actionType="PROCESS" name="UserNotes_LoadNoteDetailWizard" process="Call::MyUserNotesWizardProcess">
         <Parameters>
           <Input name="NoteDetail" value="ProcessContext::NoteDetail" />
           <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />

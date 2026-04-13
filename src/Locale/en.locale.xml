@@ -3219,8 +3219,10 @@
         <Label id="CardNotes_NoDataMessageMainText" text="No notes to display," translationStatus="7"/>
         <Label id="CardNotes_NoDataMessageSubText" text="why dont you add one?" translationStatus="7"/>
         <Label id="AddNewVisitNoteId" text="Edit Note" translationStatus="7"/>
+        <Label id="AddNewUserNoteId" text="Add Note" translationStatus="7"/>
         <Label id="ShowNotesLink" text="All Notes" translationStatus="7"/>
         <Label id="CallNotesCardTitle" text="Visit Notes" translationStatus="7"/>
+        <Label id="UserNotesTitle" text="User Notes" translationStatus="7"/>
         <Label id="AnalyticsCardTitle" text="CRM Analytics" translationStatus="7"/>
         <Label id="CardAnalytics_NoDataMessageMainText" text="Sorry, no dashboard available" translationStatus="7"/>
         <Label id="CardMobileLinks_NoDataMessageMainText" text="Sorry, no dashboard available" translationStatus="7"/>
