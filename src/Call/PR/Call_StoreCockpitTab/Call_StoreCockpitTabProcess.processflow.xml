@@ -64,6 +64,11 @@
         <Declaration name="NoteText" type="LoCallNotes" />
         <Declaration name="NotePKey" type="LoCallNotes" />
         <Declaration name="RefreshNoteList" type="DomBool" />
+
+       <!-- Card: My User Notes -->
+        <Declaration name="UserNoteText" type="DomText" />
+        <Declaration name="UserNotePKey" type="DomPKey" />
+        <Declaration name="UserNotes_Add_ButtonPressed" type="String" />
         <!-- Card: Activity Performance -->
         <Declaration name="CardActivityPerformance_DataLoaded" type="DomBool" />
         <Declaration name="CardActivityPerformance_List" type="LoActivityPerformance" />
@@ -220,9 +225,11 @@
           <!-- Card: User Notes-->
           <Event name="CardNotes_loadData" action="SetCardNotes_DataLoaded" />
           <Event name="CardNotes_itemSelected" action="CardNotes_LoadNote" />
-          <Event name="UserNotes_itemSelected" action="UserNotes_LoadNote" />
           <Event name="CardNotes_showAllNotes" action="CardNotes_ShowNotes" />
           <Event name="CardNotes_addNewNotePressed" action="CardNotes_LoadCurrentNote" />
+          <!-- Card: My User Notes -->
+          <Event name="UserNotes_itemSelected" action="UserNotes_LoadNote" />
+          <Event name="UserNotes_addNewNotePressed" action="UserNotes_AddNewNote" />
           <!-- Card: Activity Performance-->
           <Event name="CardActivityPerformance_loadData" action="LoadAndSetPrerequisites_ActivityPerformance" />
           <Event name="CardActivityPerformance_showDetails" action="CardActivityPerformance_ShowAllActivities" />
@@ -1188,6 +1195,67 @@
           <Return name="ProcessContext::RefreshNoteList" value="isCurrentNote" />
         </ReturnValues>
       </Action>
+
+       <Action actionType="PROCESS" name="UserNotes_AddNewNote" process="Call::MyCreateNewUserNoteWizardProcess">
+        <Parameters>
+          <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
+          <Input name="isReadOnly" value="ProcessContext::isNoteReadOnly" />
+        </Parameters>
+        <ReturnValues>
+          <Return name="ProcessContext::UserNoteText" value="noteText" />
+          <Return name="ProcessContext::UserNotes_Add_ButtonPressed" value="buttonPressed" />
+        </ReturnValues>
+        <TransitionTo action="UserNotes_CreateNoteDecision" />
+      </Action>
+       <Action name="UserNotes_CreateNoteDecision" actionType="DECISION" parameter="ProcessContext::UserNotes_Add_ButtonPressed">
+        <Case value="create" action="UserNotes_CreateNewNote" />
+        <CaseElse action="ShowCockpit" />
+      </Action>
+      <Action name="UserNotes_CreateNewNote" actionType="LOGIC" call="ProcessContext::MainBO.myAddNewNoteItem">
+        <Parameters>
+          <Input name="noteText" value="ProcessContext::UserNoteText" />
+        </Parameters>
+        <TransitionTo action="UserNotes_SaveAfterAdd" />
+      </Action>
+      <Action actionType="LOGIC" name="UserNotes_SaveAfterAdd" call="Facade.startTransaction">
+        <TransitionTo action="UserNotes_SaveAfterAdd_Save" />
+      </Action>
+      <Action actionType="LOGIC" name="UserNotes_SaveAfterAdd_Save" call="ProcessContext::MainBO.saveAsync">
+        <TransitionTo action="UserNotes_SaveAfterAdd_Commit" />
+      </Action>
+      <Action actionType="LOGIC" name="UserNotes_SaveAfterAdd_Commit" call="Facade.commitTransaction">
+        <TransitionTo action="UserNotes_RefreshList" />
+      </Action>
+      <Action actionType="LOGIC" name="UserNotes_RefreshList" call="ProcessContext::CardNotes_List.getNotesForCard">
+        <Parameters>
+          <Input name="numberOfListItems" value="ProcessContext::CardController.numberOfListItems" />
+          <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
+          <Input name="loNotes" value="ProcessContext::MainBO.loNotes" />
+          <Input name="callDate" value="ProcessContext::MainBO.DateFrom" />
+        </Parameters>
+        <Return name="ProcessContext::CardNotes_List" />
+        <TransitionTo action="UserNotes_GetCardInformation" />
+      </Action>
+      <Action actionType="LOGIC" name="UserNotes_GetCardInformation" call="ProcessContext::CardNotes_List.getInfoForNotesCard">
+        <Return name="ProcessContext::CardNotes_InformationText" />
+        <TransitionTo action="UserNotes_AssignDisplayedSubcomponentName" />
+      </Action>
+      <Action name="UserNotes_AssignDisplayedSubcomponentName" actionType="LOGIC" call="ProcessContext::CardController.getDisplayedSubcomponentName">
+        <Parameters>
+          <Input name="loItems" value="ProcessContext::CardNotes_List" />
+          <Input name="type" value="Notes" type="Literal" />
+        </Parameters>
+        <Return name="ProcessContext::CardNotes_DisplayedSubcomponentName" />
+        <TransitionTo action="UserNotes_SetDataLoaded" />
+      </Action>
+      <Action name="UserNotes_SetDataLoaded" actionType="LOGIC" call="Utils.identity">
+        <Parameters>
+          <Input name="value" value="1" type="Literal" />
+        </Parameters>
+        <Return name="ProcessContext::CardNotes_DataLoaded" />
+        <TransitionTo action="ShowCockpit" />
+      </Action>
+
       <Action name="UserNotes_LoadNote" actionType="LOGIC" call="ProcessContext::CardNotes_List.getItemByPKey">
         <Parameters>
           <Input name="pKey" value="Event.pKey" />

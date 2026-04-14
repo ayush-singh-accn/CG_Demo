@@ -4,6 +4,8 @@
     <SimpleProperty name="clbMainPKey" type="DomPKey" />
     <SimpleProperty name="pKey" type="DomPKey" />
     <SimpleProperty name="note" type="String" />
+    <SimpleProperty name="responsibleName" type="DomString" />
+    <SimpleProperty name="noteDate" type="DomDateTime" />
     <SimpleProperty name="isCurrentNote" type="DomBool" />
   </SimpleProperties>
   <NestedObjects></NestedObjects>

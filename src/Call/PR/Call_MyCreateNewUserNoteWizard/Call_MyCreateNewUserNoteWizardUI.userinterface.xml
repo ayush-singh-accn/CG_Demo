@@ -1,0 +1,48 @@
+<UIDescription name="Call::MyCreateNewUserNoteWizardUI" schemaVersion="0.0.0.5">
+  <Page pagePattern="SingleSectionDialogPage" onBackDiscard="false">
+  <PageHeader>
+      <Bindings>
+        <Resource target="title" type="Label" id="AddUserNoteId" defaultLabel="Add User Note" bindingMode="ONE_TIME" />
+      </Bindings>
+      <MenuItems>
+        <MenuItem directlyVisible="true" itemId="SaveMenuId">
+          <Bindings>
+            <Resource target="Text" type="Label" id="createNewNoteId" defaultLabel="Save" />
+            <Resource target="Icon" type="Image" id="Plus_PB" />
+          </Bindings>
+          <Events>
+            <ButtonPressedEvent event="createNewNote" />
+          </Events>
+        </MenuItem>
+      </MenuItems>
+    </PageHeader>
+    <Section sectionName="masterSection" sectionPattern="SingleAreaSection">
+      <Area areaName="mainArea" areaPattern="GroupedElementsArea">
+        <GroupElement name="NoteGroup">
+          <InputArea name="Initiator" editable="false">
+            <Bindings>
+              <Resource target="Label" type="Label" id="InitiatorId" defaultLabel="Initiator" />
+              <Binding target="Value" binding="ProcessContext::WizardBO.responsibleName" bindingMode="ONE_WAY" />
+            </Bindings>
+          </InputArea>
+          <InputArea name="Date" editable="false">
+            <Bindings>
+              <Resource target="Label" type="Label" id="DateId" defaultLabel="Date" />
+              <Binding target="Value" type="Date" binding="ProcessContext::WizardBO.noteDate" bindingMode="ONE_WAY" />
+            </Bindings>
+          </InputArea>
+        </GroupElement>
+        <GroupElement name="NotesDetail">
+          <Bindings>
+            <Resource target="Title" type="Label" id="NoteId" defaultLabel="Note" />
+          </Bindings>
+          <InputAreaMultiLine name="Note" editable="true" noOfRows="8">
+            <Bindings>
+              <Binding target="Value" binding="ProcessContext::WizardBO.note" bindingMode="TWO_WAY" />
+            </Bindings>
+          </InputAreaMultiLine>
+        </GroupElement>
+      </Area>
+    </Section>
+  </Page>
+</UIDescription>

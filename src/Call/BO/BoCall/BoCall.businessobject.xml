@@ -174,7 +174,7 @@
     <Method name="showStartVisitInfo"/>
     <Method name="checkForInProgressVisit"/>
     <Method name="isPromotedProductFilterVisible"/>
-  </Methods>
+  <Method name="myAddNewNoteItem"/></Methods>
   <Validations>
     <Validation name="validateBase"/>
     <Validation name="validateCallDate"/>
