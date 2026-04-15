@@ -38,10 +38,10 @@
  * @kind listobject
  * @namespace CORE
  * @param {String} noteText
- * @param {DomPKey} clbMainPKey
+ * @param {DomPKey} notePKey
  * @description updates the text of a visit note identified by a primary key if the new text is different from the current text.
  */
-function updateVisitNoteText(noteText, clbMainPKey){
+function updateVisitNoteText(noteText, notePKey){
     var me = this;
     ///////////////////////////////////////////////////////////////////////////////////////////////
     //                                                                                           //
@@ -49,10 +49,18 @@ function updateVisitNoteText(noteText, clbMainPKey){
     //                                                                                           //
     ///////////////////////////////////////////////////////////////////////////////////////////////
     
-var currentNote = me.getItemsByParam({"pKey": clbMainPKey}); 
+var noteKey = Utils.isDefined(notePKey) ? notePKey : null;
+var currentNote = noteKey ? me.getItemsByParam({"pKey": noteKey}) : [];
 if(currentNote.length>0){
   if(currentNote[0].getText() != noteText){
     currentNote[0].setText(noteText);
+    var shortText = noteText.length > 100 ? noteText.substr(0, 100) + "..." : noteText;
+    if(typeof currentNote[0].setShortText === 'function'){
+      currentNote[0].setShortText(shortText);
+    } else {
+      currentNote[0].shortText = shortText;
+    }
+    currentNote[0].setObjectStatus(STATE.DIRTY);
   }
 }
 

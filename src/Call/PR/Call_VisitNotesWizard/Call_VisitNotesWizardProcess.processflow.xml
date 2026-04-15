@@ -30,7 +30,7 @@
       <Action actionType="END" name="End">
         <ReturnValues>
           <Return name="noteText" value="ProcessContext::WizardBO.note" />
-          <Return name="isCurrentNote" value="ProcessContext::WizardBO.isCurrentNote" />
+          <Return name="isCurrentNote" type="Literal" value="true" />
         </ReturnValues>
       </Action>
     </Actions>

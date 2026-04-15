@@ -75,12 +75,14 @@ for(i=0;i<notes.length;i++){
   if(notes[i].pKey === clbMainPKey && Utils.isEmptyString(notes[i].text)){
     currentNoteExists = true;
   }
+  var noteText = notes[i].text || "";
+  var computedShortText = noteText.length > 100 ? noteText.substr(0, 100) + "..." : noteText;
   var liCallnote = {
     "pKey": notes[i].pKey,
     "bpaMainPKey": notes[i].bpaMainPKey,
     "noteDate": notes[i].noteDate,
-    "text": notes[i].text,
-    "shortText": notes[i].shortText,
+    "text": noteText,
+    "shortText": computedShortText,
     "responsiblePKey": notes[i].responsiblePKey,
     "responsibleName": notes[i].responsibleName,
     "noteSubText": notes[i].noteSubText

@@ -19,7 +19,7 @@
               </Col>
             </ItemListLayout>
             <Bindings>
-              <Binding target="Text" type="Text" binding=".shortText" bindingMode="ONE_WAY" />
+              <Binding target="Text" type="Text" binding=".text" bindingMode="ONE_WAY" />
             </Bindings>
           </Items>
           <Events>

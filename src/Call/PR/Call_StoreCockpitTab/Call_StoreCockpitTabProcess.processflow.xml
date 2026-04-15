@@ -1199,7 +1199,7 @@
        <Action actionType="PROCESS" name="UserNotes_AddNewNote" process="Call::MyCreateNewUserNoteWizardProcess">
         <Parameters>
           <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
-          <Input name="isReadOnly" value="ProcessContext::isNoteReadOnly" />
+          <Input name="isReadOnly" type="Literal" value="false" />
         </Parameters>
         <ReturnValues>
           <Return name="ProcessContext::UserNoteText" value="noteText" />
@@ -1282,7 +1282,7 @@
       <Action actionType="LOGIC" name="CardNotes_updateLonotes" call="ProcessContext::MainBO.loNotes.updateVisitNoteText">
         <Parameters>
           <Input name="noteText" value="ProcessContext::NoteText" />
-          <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
+          <Input name="notePKey" value="ProcessContext::NoteDetail.pKey" />
         </Parameters>
         <TransitionTo action="Save_AfterVisitNote_Start" />
       </Action>
@@ -1293,7 +1293,7 @@
         <TransitionTo action="Save_AfterVisitNote_Commit" />
       </Action>
       <Action actionType="LOGIC" name="Save_AfterVisitNote_Commit" call="Facade.commitTransaction">
-        <TransitionTo action="SetCardNotes_DataLoaded" />
+        <TransitionTo action="UserNotes_RefreshList" />
       </Action>
       <Action actionType="PROCESS" name="CardNotes_ShowNotes" process="Call::NotesTabProcess">
         <Parameters>
