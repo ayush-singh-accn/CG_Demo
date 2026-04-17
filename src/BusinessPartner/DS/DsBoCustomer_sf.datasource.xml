@@ -8,6 +8,7 @@
     <Attribute name="phone1" table="Account" column="Phone" />
     <Attribute name="email1" table="Account" column="Account_Email__c" />
     <Attribute name="fax1" table="Account" column="Fax" />
+    <Attribute name="price" table="Account" column="Price__c" />
     <Attribute name="priority" table="Account_Extension__c" column="Priority__c" />
     <Attribute name="classOfTrade" table="Account_Extension__c" column="Class_Of_Trade__c" />
     <Attribute name="companyType" table="Account_Extension__c" column="Company_Type__c" />

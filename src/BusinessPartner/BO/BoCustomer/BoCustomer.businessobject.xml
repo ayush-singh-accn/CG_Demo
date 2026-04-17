@@ -9,6 +9,7 @@
     <SimpleProperty name="phone1" type="DomDial" storable="true" dataSourceProperty="phone1" />
     <SimpleProperty name="email1" type="DomEmail" storable="true" dataSourceProperty="email1" />
     <SimpleProperty name="fax1" type="DomDial" storable="true" dataSourceProperty="fax1" />
+    <SimpleProperty name="price" type="DomCurrency" storable="true" dataSourceProperty="price" />
     <SimpleProperty name="priority" type="DomABC" storable="true" dataSourceProperty="priority" />
     <SimpleProperty name="classOfTrade" type="DomBpaClassOfTrade" storable="true" dataSourceProperty="classOfTrade" />
     <SimpleProperty name="companyType" type="DomBpaCompanyType" storable="true" dataSourceProperty="companyType" />

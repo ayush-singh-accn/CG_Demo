@@ -25,7 +25,7 @@
           <Bindings>
             <Resource target="Title" type="Label" id="NoteId" defaultLabel="Note" />
           </Bindings>
-          <InputAreaMultiLine name="Note" noOfRows="8">
+          <InputAreaMultiLine name="Note" editable="true" noOfRows="8">
             <Bindings>
               <Binding target="Value" binding="ProcessContext::WizardBO.note" bindingMode="TWO_WAY" />
             </Bindings>

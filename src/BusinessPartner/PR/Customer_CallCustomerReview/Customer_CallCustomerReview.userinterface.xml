@@ -195,6 +195,12 @@
                 <Binding target="Value" binding="ProcessContext::CustomerDetail.LoCustomerAddress.MainAddress.countryState" bindingMode="TWO_WAY" />
               </Bindings>
             </InputArea>
+            <InputArea name="Price">
+              <Bindings>
+                <Resource target="Label" type="Label" id="Price" defaultLabel="Price" />
+                <Binding target="Value" binding="ProcessContext::CustomerDetail.price" bindingMode="TWO_WAY" />
+              </Bindings>
+            </InputArea>
           </GroupElement>
           <GroupElement name="CommunicationGroup">
             <Bindings>

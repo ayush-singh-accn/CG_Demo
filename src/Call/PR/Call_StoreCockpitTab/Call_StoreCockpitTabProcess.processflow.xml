@@ -1266,8 +1266,8 @@
       <Action actionType="PROCESS" name="UserNotes_LoadNoteDetailWizard" process="Call::MyUserNotesWizardProcess">
         <Parameters>
           <Input name="NoteDetail" value="ProcessContext::NoteDetail" />
-          <Input name="clbMainPKey" value="ProcessContext::MainBO.pKey" />
-          <Input name="isReadOnly" value="ProcessContext::isNoteReadOnly" />
+          <Input name="clbMainPKey" value="ProcessContext::NoteDetail.pKey" />
+          <Input name="isReadOnly" type="Literal" value="false" />
         </Parameters>
         <TransitionTo action="CardNotes_UpdateDecision" />
         <ReturnValues>
