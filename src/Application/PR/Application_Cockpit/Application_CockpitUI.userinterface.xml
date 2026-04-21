@@ -1529,7 +1529,7 @@
           </CockpitList>
         </CardContainer>
 <!-- Display Card START-->
- <CardContainer name="CardDisplay">
+ <!-- <CardContainer name="CardDisplay">
         <Bindings>
             <Binding type="Visible" target="Visible" call="ProcessContext::CardController.isCardVisible">
               <Parameters>
@@ -1602,7 +1602,7 @@
            </Events>
        </ImageButton>
     </LinkBar>
-   </CardContainer>
+   </CardContainer> -->
 <!-- Display Card END -->
         <!-- Sync Card -->
         <SyncCardContainer name="cardSync">

@@ -217,9 +217,9 @@
         </Parameters>
         <Return name="ProcessContext::DemoOrdersList" />
       </Action>
-      <Action name="LoadLoMyDisplays" actionType="LOAD" type="LoMyDisplays">
+      <!-- <Action name="LoadLoMyDisplays" actionType="LOAD" type="LoMyDisplays">
           <Return name="ProcessContext::CardDisplay_DisplayList" />             
-      </Action>
+      </Action> -->
     </EntryActions>
   </Entry>
   <Body>
